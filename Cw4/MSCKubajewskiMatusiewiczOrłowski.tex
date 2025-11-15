@@ -1,0 +1,184 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{karnaugh-map}
+\usepackage[polish]{babel}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{url}
+\usepackage{array}
+\usepackage{indentfirst}
+\usepackage{amsmath}
+
+
+\begin{document}
+
+\begin{center}
+	% Używamy @{} aby usunąć zewnętrzne marginesy
+	% Używamy 'm' (z pakietu 'array') dla środkowania w pionie
+	
+	\begin{tabular}{@{}|m{0.65\textwidth}|m{0.3\textwidth}|@{}}
+		\hline
+		% --- PIERWSZY WIERSZ LOGICZNY (wg obrazka) ---
+		% Komórka 1,1 (Lewa-góra)
+		Wydział Informatyki Politechniki Białostockiej \newline
+		Przedmiot: Modułowe systemy cyfrowe
+		&
+		% Komórka 1,2 (Prawa-góra)
+		Data: 12.11.2025 \\ \hline
+		
+		% --- DRUGI WIERSZ LOGICZNY (wg obrazka) ---
+		% Komórka 2,1 (Lewa-środek)
+		Zajęcia nr 3 \newline
+		Temat: Bloki arytmetyczno-logiczne \newline
+		
+		& % <-- Separator kolumn dla wiersza 2
+		
+		% Komórka 2,2 (Prawa-środek)
+		
+		\\
+		
+		% --- TRZECI WIERSZ LOGICZNY (wg obrazka) ---
+		% Komórka 3,1 (Lewa-dół)
+		Grupa: Lab 8 \newline
+		Imię i nazwisko: \newline
+		Kamil Kubajewski, Jakub Matusiewicz, Bartosz Orłowski
+		
+		& % <-- Separator kolumn dla wiersza 3
+		
+		% Komórka 3,2 (Prawa-dół)
+		Prowadzący: \newline
+		dr hab. inż. Sławomir Zieliński \\ \hline
+	\end{tabular}
+\end{center}
+
+\section{Cel ćwiczeń}
+
+Celem ćwiczenia jest zapoznanie sie z budową i działaniem scalonych układów
+realizujących funkcje arytmetyczne.
+
+
+\section{Podstawa teoretyczna}
+
+\pagebreak
+\section{Przebieg ćwiczeń}
+\subsection{Zadanie 1}
+Zrealizować półsumator i sumator wykorzystując moduł laboratoryjny DB08.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{obwod1.PNG}
+    \caption{Obwód do zadania 1}
+    \label{fig:moj_obrazek}
+\end{figure}
+
+Realizując \textbf{pełny sumator} (full adder), realizujemy również \textbf{półsumator} (half adder), gdyż pełny sumator składa się z dwóch półsumatorów. Aby przetestować działanie sumatora, sprawdzimy słowa z tablicy prawdy dla pełnego sumatora i porównamy otrzymane wyniki z tabelą prawdy.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c c c||c c|} 
+ \hline
+ \multicolumn{3}{|c||}{\textbf{Wejścia}} & \multicolumn{2}{c|}{\textbf{Wyjścia}} \\
+ \hline
+ \textbf{A} & \textbf{B} & \textbf{$C_{in}$} & \textbf{$C_{out}$} & \textbf{S} \\ [0.5ex] 
+ \hline\hline
+ 0 & 0 & 0 & 0 & 0 \\ 
+ 0 & 0 & 1 & 0 & 1 \\
+ 0 & 1 & 0 & 0 & 1 \\
+ 0 & 1 & 1 & 1 & 0 \\
+ 1 & 0 & 0 & 0 & 1 \\
+ 1 & 0 & 1 & 1 & 0 \\
+ 1 & 1 & 0 & 1 & 0 \\
+ 1 & 1 & 1 & 1 & 1 \\
+ \hline
+\end{tabular}
+\caption{Tabela prawdy pełnego sumatora}
+\label{tab:sumator}
+\end{table}
+\pagebreak
+\subsection{Zadanie 2}
+Zrealizować subtraktor dwóch liczb 2 i 4 bitowych (DB30).
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{obwod2_3.PNG}
+    \caption{Obwód do zadania 2}
+    \label{fig:moj_obrazek}
+\end{figure}
+
+W ramach zadania zrealizowany został \textbf{subtraktor 4-bitowy}.
+Kluczowe jest, że w implementacji subtraktora operacja odejmowania ($A - B$) jest realizowana jako dodawanie w kodzie uzupełnień do dwóch (U2), tj. $A + (\text{NOT } B) + 1$. Pozwala to na poprawną obsługę i reprezentację liczb ujemnych.
+
+Do weryfikacji działania układu użyto przykładowego odejmowania $\mathbf{9 - 10 = -1}$.
+W 4-bitowej reprezentacji binarnej odpowiada to działaniu:
+$1001_2 \text{ (9)} - 1010_2 \text{ (10)} = 1111_2 \text{ (-1 w U2)}$.
+\pagebreak
+\subsection{Zadanie 3}
+Zapoznać się z kartą katalogową układu sumatora/subtraktora 4 bitowego 7483. Sprawdzić
+działanie układu wykorzystując moduł DB19. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{obwod2_3.PNG}
+    \caption{Obwód do zadania 3}
+    \label{fig:moj_obrazek}
+\end{figure}
+Do przetestowania 4-bitowego sumatora/subtraktora użyto modułu \textbf{DB19}. Moduł ten jest wyposażony w przełączniki do wprowadzania 4-bitowych liczb A ($A_4$-$A_1$) i B ($B_4$-$B_1$) oraz przełącznik trybu pracy \textbf{Add/Sub}.
+
+W pierwszej kolejności przetestowano działanie \textbf{sumatora}. Przełącznik trybu ustawiono w pozycję \textbf{Add} (stan 0). Następnie podano na wejścia przykładowe liczby, np. $A = 0011_2 \text{ (3)}$ i $B = 0010_2 \text{ (2)}$. Sprawdzono, że na wyjściach $S_4$-$S_1$ pojawił się poprawny wynik $0101_2 \text{ (5)}$, a wyjście \textbf{Carry} (przeniesienie) było w stanie niskim.
+
+Następnie przetestowano tryb \textbf{subtraktora}, ustawiając przełącznik \textbf{Add/Sub} w pozycję \textbf{Sub} (stan 1). Spowodowało to, że układ zaczął wykonywać operację odejmowania $A - B$ poprzez dodawanie w kodzie U2 (realizowane jako $A + (\text{NOT } B) + 1$). Do weryfikacji podano na wejścia liczby $A = 1001_2 \text{ (9)}$ oraz $B = 1010_2 \text{ (10)}$. Zaobserwowano, że wyjścia $S_4$-$S_1$ poprawnie pokazały wynik $1111_2$, co jest reprezentacją liczby -1 w kodzie U2.
+
+\pagebreak
+\subsection{Zadanie 4}
+Zapoznać się z budową i sprawdzić działanie układu komparatora dwóch liczb
+czterobitowych 7485 wykorzystując moduł laboratoryjny DB34.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{obwod4.PNG}
+    \caption{Obwód do zadania 4}
+    \label{fig:moj_obrazek}
+\end{figure}
+
+Do przetestowania 4-bitowego komparatora użyto układu scalonego \textbf{7485N} (jak pokazano na schemacie). Za pomocą przełączników podawano na wejścia układu dwie 4-bitowe liczby: A ($A_3$-$A_0$) oraz B ($B_3$-$B_0$). Test polegał na weryfikacji trzech stanów logicznych na wyjściach układu.
+
+Najpierw sprawdzono warunek równości ($A=B$), podając na oba wejścia tę samą wartość, np. $A = 1010_2$ i $B = 1010_2$. Zaobserwowano, że stan wysoki pojawił się na wyjściu \textbf{$A=B$} (pin OAEQB).
+
+Następnie przetestowano warunek $A > B$, podając np. $A = 1011_2$ i $B = 1010_2$. Sprawdzono, że stan wysoki aktywował wyjście \textbf{$A>B$} (pin OAGTB).
+
+Na koniec zweryfikowano warunek $A < B$, podając np. $A = 1001_2$ i $B = 1010_2$. W tym przypadku zaobserwowano stan wysoki na wyjściu \textbf{$A<B$} (pin OALTB).
+
+\section{Dyskusja błedów}
+
+
+\section{Wnioski}
+
+
+\section{Literatura}
+
+\renewcommand{\refname}{}
+
+\begin{thebibliography}{9}
+    
+    \bibitem{maciak} 
+    T. Maciak, \textit{Skrypt do laboratorium Elektroniki cyfrowe}, 
+    Wydział Informatyki Politechniki Białostockiej, Białystok, 2021.
+    
+    \bibitem{wiki} 
+    \textit{Układ Kombinacyjny}, Wikipedia, dostęp online: 
+    \url{https://pl.wikipedia.org/wiki/Uk%C5%82ad_kombinacyjny}, 
+    data dostępu: luty 2023.
+    
+    
+\end{thebibliography}
+
+\pagebreak
+\section{Protokół}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{protokol.PNG}
+    \caption{Protokół}
+    \label{fig:moj_obrazek}
+\end{figure}
+\end{document}
