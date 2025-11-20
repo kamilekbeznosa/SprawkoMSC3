@@ -62,6 +62,19 @@ realizujących funkcje arytmetyczne.
 
 \section{Podstawa teoretyczna}
 
+W układach cyfrowych realizującym operacje arytmetyczno-logiczne, istotnymi komponentami są sumatory, subtraktory oraz komparatory. Każdy z tych bloków pełni określoną funkcję w obliczeniach.
+
+\subsection{Sumator}
+• **Półsumator** – dodaje dwa bity i generuje sumę oraz przeniesienie. Jest to podstawowy układ wykorzystywany w tworzeniu bardziej złożonych sumatorów.  
+• **Sumator pełny** – dodaje trzy bity (dwa bity z liczb oraz bit przeniesienia) i generuje sumę oraz przeniesienie, które może być przekazywane do kolejnego bitu.  
+Działanie półsumatora i sumatora pełnego opiera się na zastosowaniu bramek logicznych takich jak AND, OR oraz XOR. Półsumator realizuje podstawową operację XOR do generowania sumy i AND do przeniesienia. Natomiast sumator pełny wymaga dwóch półsumatorów oraz dodatkowego przeniesienia z poprzedniego bitu.
+
+\subsection{Subtraktor}
+Subtraktor to układ odpowiedzialny za odejmowanie liczb binarnych. Można go zbudować na podstawie sumatora, wykorzystując zasadę dodawania w kodzie U2 (operacja dodawania ujemnej liczby). Subtraktor przyjmuje dwie liczby binarne jako dane wejściowe i generuje wynik ich różnicy na wyjściu, gdzie operacja odejmowania jest realizowana przez dodanie liczby pierwszej i dopełnienia liczby drugiej.
+
+\subsection{Komparator}
+Komparator to układ, którego zadaniem jest porównanie dwóch liczb binarnych. Na podstawie tego porównania, komparator zwraca wynik, który wskazuje, czy jedna liczba jest większa, mniejsza lub równa drugiej. Działa na zasadzie analizy poszczególnych bitów liczb, a następnie generuje odpowiedni sygnał, który wskazuje wynik porównania.
+
 \pagebreak
 \section{Przebieg ćwiczeń}
 \subsection{Zadanie 1}
@@ -152,6 +165,11 @@ Na koniec zweryfikowano warunek $A < B$, podając np. $A = 1001_2$ i $B = 1010_2
 
 
 \section{Wnioski}
+
+W trakcie laboratoriów dotyczących bloków arytmetyczno-logicznych w układach cyfrowych, uzyskaliśmy wiedzę na temat budowy oraz działania kluczowych komponentów, takich jak sumatory, subtraktory i komparatory. Na zajęciach zapoznaliśmy się z różnymi układami scalonymi oraz odpowiednimi modułami laboratoryjnymi.
+Zrealizowaliśmy pełny sumator, który w praktyce składał się z dwóch półsumatorów. Dzięki temu dokładnie zrozumieliśmy proces dodawania liczb binarnych oraz generowania przeniesienia. Zastosowanie tablicy prawdy dla pełnego sumatora umożliwiło sprawdzenie poprawności działania układu, potwierdzając, że sumator działa zgodnie z oczekiwaniami.
+Implementacja subtraktora, który realizuje operację odejmowania za pomocą kodu U2, pokazała, jak ważne jest poprawne zarządzanie liczbami ujemnymi w układach cyfrowych.
+Realizacja układu komparatora pozwoliła na porównywanie dwóch liczb binarnych, co jest istotną operacją w wielu układach cyfrowych. Korzystaliśmy również z układów scalonych takich jak 7483 (sumator/subtraktor) oraz 7485 (komparator). Dzięki temu mogliśmy lepiej zrozumieć ich działania.
 
 
 \section{Literatura}
