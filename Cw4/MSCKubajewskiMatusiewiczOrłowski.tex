@@ -62,8 +62,112 @@ realizujących funkcje arytmetyczne.
 
 \section{Podstawa teoretyczna}
 
+W układach cyfrowych realizującym operacje arytmetyczno-logiczne, istotnymi komponentami są sumatory, subtraktory oraz komparatory. Każdy z tych bloków pełni określoną funkcję w obliczeniach.
+
+\subsection{Sumator}
+
+\begin{itemize}
+	\item Półsumator – dodaje dwa bity i generuje sumę oraz przeniesienie. Jest to podstawowy układ wykorzystywany w tworzeniu bardziej złożonych sumatorów \cite{maciak, digital, system, wiki-sum}.
+	\begin{table}[h!]
+		\centering
+		\begin{tabular}{|c c||c c|} 
+			\hline
+			\multicolumn{2}{|c||}{\textbf{Wejścia}} & \multicolumn{2}{c|}{\textbf{Wyjścia}} \\
+			\hline
+			\textbf{A} & \textbf{B} & \textbf{$C_{out}$} & \textbf{S} \\ [0.5ex] 
+			\hline\hline
+			0 & 0 & 0 & 0 \\ 
+			0 & 1 & 0 & 1 \\
+			1 & 0 & 0 & 1 \\
+			1 & 1 & 1 & 0 \\
+			\hline
+		\end{tabular}
+		\caption{Tabela prawdy półsumatora}
+		\label{tab:sumator}
+	\end{table}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.5\textwidth]{half.PNG}
+		\caption{Schemat półsumatora}
+		\label{fig:moj_obrazek}
+	\end{figure}  
+	\pagebreak
+	
+	\item Sumator pełny – dodaje trzy bity (dwa bity z liczb oraz bit przeniesienia) i generuje sumę oraz przeniesienie, które może być przekazywane do kolejnego bitu.  
+	Działanie półsumatora i sumatora pełnego opiera się na zastosowaniu bramek logicznych takich jak AND, OR oraz XOR. Półsumator realizuje podstawową operację XOR do generowania sumy i AND do przeniesienia. Natomiast sumator pełny wymaga dwóch półsumatorów oraz dodatkowego przeniesienia z poprzedniego bitu\cite{maciak, digital, system, wiki-sum}.
+	\begin{table}[h!]
+		\centering
+		\begin{tabular}{|c c c||c c|} 
+			\hline
+			\multicolumn{3}{|c||}{\textbf{Wejścia}} & \multicolumn{2}{c|}{\textbf{Wyjścia}} \\
+			\hline
+			\textbf{A} & \textbf{B} & \textbf{$C_{in}$} & \textbf{$C_{out}$} & \textbf{S} \\ [0.5ex] 
+			\hline\hline
+			0 & 0 & 0 & 0 & 0 \\ 
+			0 & 0 & 1 & 0 & 1 \\
+			0 & 1 & 0 & 0 & 1 \\
+			0 & 1 & 1 & 1 & 0 \\
+			1 & 0 & 0 & 0 & 1 \\
+			1 & 0 & 1 & 1 & 0 \\
+			1 & 1 & 0 & 1 & 0 \\
+			1 & 1 & 1 & 1 & 1 \\
+			\hline
+		\end{tabular}
+		\caption{Tabela prawdy pełnego sumatora}
+		\label{tab:sumator}
+	\end{table}
+	\pagebreak
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.6\textwidth]{full.PNG}
+		\caption{Schemat pełnego sumatora}
+		\label{fig:moj_obrazek}
+	\end{figure}
+\end{itemize}
+
+
+\subsection{Subtraktor}
+Subtraktor to układ odpowiedzialny za odejmowanie liczb binarnych. Można go zbudować na podstawie sumatora, wykorzystując zasadę dodawania w kodzie U2 (operacja dodawania ujemnej liczby). Subtraktor przyjmuje dwie liczby binarne jako dane wejściowe i generuje wynik ich różnicy na wyjściu, gdzie operacja odejmowania jest realizowana przez dodanie liczby pierwszej i dopełnienia liczby drugiej\cite{maciak, digital, wiki-sub}.
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|c c c||c c|} 
+		\hline
+		\multicolumn{3}{|c||}{\textbf{Wejścia}} & \multicolumn{2}{c|}{\textbf{Wyjścia}} \\
+		\hline
+		\textbf{A} & \textbf{B} & \textbf{$B_{in}$} & \textbf{D} & \textbf{$B_{out}$} \\ [0.5ex] 
+		\hline\hline
+		0 & 0 & 0 & 0 & 0 \\ 
+		0 & 0 & 1 & 1 & 1 \\
+		0 & 1 & 0 & 1 & 1 \\
+		0 & 1 & 1 & 0 & 1 \\
+		1 & 0 & 0 & 1 & 0 \\
+		1 & 0 & 1 & 0 & 0 \\
+		1 & 1 & 0 & 0 & 0 \\
+		1 & 1 & 1 & 1 & 1 \\
+		\hline
+	\end{tabular}
+	\caption{Tabela prawdy pełnego subtraktora}
+	\label{tab:sumator}
+\end{table}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.65\textwidth]{sub.PNG}
+	\caption{Schemat subtraktora}
+	\label{fig:moj_obrazek}
+\end{figure}
 \pagebreak
+
+\subsection{Komparator}
+Komparator to układ, którego zadaniem jest porównanie dwóch liczb binarnych. Na podstawie tego porównania, komparator zwraca wynik, który wskazuje, czy jedna liczba jest większa, mniejsza lub równa drugiej. Działa na zasadzie analizy poszczególnych bitów liczb, a następnie generuje odpowiedni sygnał, który wskazuje wynik porównania\cite{maciak, digital, wiki-komp}.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\textwidth]{komp.PNG}
+	\caption{Schemat komparatora 1-bitowego}
+	\label{fig:moj_obrazek}
+\end{figure}
+
 \section{Przebieg ćwiczeń}
+
 \subsection{Zadanie 1}
 Zrealizować półsumator i sumator wykorzystując moduł laboratoryjny DB08.
 \begin{figure}[h]
@@ -150,9 +254,22 @@ Na koniec zweryfikowano warunek $A < B$, podając np. $A = 1001_2$ i $B = 1010_2
 
 \section{Dyskusja błedów}
 
+W przeprowadzonych zadaniach badano działanie układów realizujących funkcje arytmetyczne. Pomiary te miały charakter czysto funkcjonalny, czyli sprwadzenie czy dany układ działa według założeń teoretycznych. Podczas obserwacji nie zaobserwowano istotnych błędów w działaniu układów kombinacyjnych. Wszystkie układy, czyli półsumatory, sumatory, subtraktory czy komparatory działały zgodnie z teorią oraz z tabelami prawdy. Wyniki praktyczne odpowiadały wartościom oczekiwanym, a wyniki dodawania, odejmowania bądź porównywania liczb na wyjściach były zgodne z przewidywaniami dla poszczególnych liczb na wejściach.\\
+
+W zadaniu pierwszym najczęstszym źródłem błędów było niepoprawne ustawienie przełączników wejściowych A, B oraz Cin, co prowadziło do wyników niezgodnych z tablicą prawdy. W kilku przypadkach początkowo błędnie odczytywano wyjścia Cout i S, ponieważ moduł DB08 posiada oddzielne diody dla obu wartości, a ich interpretacja wymagała uwagi. Mogły również wystąpić błędy wynikające z niepełnego wyzerowania stanu wejść przed kolejnymi testami. Gdyby układ zbudowano z kilku sumatorów mogłoby również wystąpić opóźnienie czasowe wynikające z czasu propagacji bramek oraz z powodu przenoszenia wartości Carry, która musiałaby przejść przez taki cały układ.\\
+
+W zadaniu drugim najczęstszym źródłem błędów było niepoprawne ustawienie przełączników wejściowych oraz błędne odczytanie wyniku na wyjściu w kodzie U2, szczególnie przy liczbach ujemnych( np. -1 jako 1111).\\
+
+W zadaniu trzecim pojawiały się błędy związane z ustawieniem przełącznika Add/Sub, co powodowało niezamierzone przełączanie między dodawaniem a odejmowaniem, a w konsekwencji błędne odczytanie wyniku na wyjściu. Mogły również wystąpić błędy wynikające z niepełnego wyzerowania stanu wejść przed kolejnymi testami.\\
+
+W zadaniu czwartym wprowadzając liczby A i B, zdarzyły się pomyłki w ustawieniu odpowiedniej kolejności bitowej, co przekładało się na niepoprawny rezultat porównania. Błąd występował również wtedy, gdy nie wyzerowano sygnałów z poprzedniego testu, co mogło spowodować złe wnioskowanie. Dodatkowo sam moduł DB34 miał źle oznaczone wejścia na układzie, co początkowo mogło prowadzić do złego wprowadzania liczb na wejściu.\\
 
 \section{Wnioski}
 
+W trakcie laboratoriów dotyczących bloków arytmetyczno-logicznych w układach cyfrowych, uzyskaliśmy wiedzę na temat budowy oraz działania kluczowych komponentów, takich jak sumatory, subtraktory i komparatory. Na zajęciach zapoznaliśmy się z różnymi układami scalonymi oraz odpowiednimi modułami laboratoryjnymi.
+Zrealizowaliśmy pełny sumator, który w praktyce składał się z dwóch półsumatorów. Dzięki temu dokładnie zrozumieliśmy proces dodawania liczb binarnych oraz generowania przeniesienia. Zastosowanie tablicy prawdy dla pełnego sumatora umożliwiło sprawdzenie poprawności działania układu, potwierdzając, że sumator działa zgodnie z oczekiwaniami.
+Implementacja subtraktora, który realizuje operację odejmowania za pomocą kodu U2, pokazała, jak ważne jest poprawne zarządzanie liczbami ujemnymi w układach cyfrowych.
+Realizacja układu komparatora pozwoliła na porównywanie dwóch liczb binarnych, co jest istotną operacją w wielu układach cyfrowych. Korzystaliśmy również z układów scalonych takich jak 7483 (sumator/subtraktor) oraz 7485 (komparator). Dzięki temu mogliśmy lepiej zrozumieć ich działania.
 
 \section{Literatura}
 
@@ -164,11 +281,30 @@ Na koniec zweryfikowano warunek $A < B$, podając np. $A = 1001_2$ i $B = 1010_2
     T. Maciak, \textit{Skrypt do laboratorium Elektroniki cyfrowe}, 
     Wydział Informatyki Politechniki Białostockiej, Białystok, 2021.
     
-    \bibitem{wiki} 
-    \textit{Układ Kombinacyjny}, Wikipedia, dostęp online: 
-    \url{https://pl.wikipedia.org/wiki/Uk%C5%82ad_kombinacyjny}, 
-    data dostępu: luty 2023.
+    \bibitem{digital}
+    M. Morris Mano, Michael D. Ciletti, \textit{Digital Design: With an Introduction to the Verilog HDL, dostęp online:}
+    \url{https://bida.uclv.edu.cu/bitstream/handle/123456789/10679/Digital%20design%20%20with%20an%20introduction%20to%20the%20verilog%20hdl.pdf?sequence=1&isAllowed=y},
+    data dostępu: 2013
     
+    \bibitem{system}
+    Weinberger, A.; Smith, J.L., \textit{A Logic for High-Speed Addition (1958), dostęp online:}
+    \url{https://nvlpubs.nist.gov/nistpubs/Legacy/circ/nbscircular591.pdf},
+    data dostępu: Listopad 2025
+    
+    \bibitem{wiki-sum} 
+    \textit{Adder (electronics)}, Wikipedia, dostęp online: 
+    \url{en.wikipedia.org/wiki/Adder_(electronics)}, 
+    data dostępu: Listopad 2025.
+    
+    \bibitem{wiki-sub}
+    \textit{Subtractor, Wikipedia,dostęp online:}
+    \url{en.wikipedia.org/wiki/Subtractor},
+    data dostępu: Marzec 2025
+    
+    \bibitem{wiki-komp}
+    \textit{Comparator, Wikipedia, dostęp online:}
+    \url{en.wikipedia.org/wiki/Comparator},
+    data dostępu: Lipiec 2025
     
 \end{thebibliography}
 
