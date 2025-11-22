@@ -65,96 +65,16 @@ realizujących funkcje arytmetyczne.
 W układach cyfrowych realizującym operacje arytmetyczno-logiczne, istotnymi komponentami są sumatory, subtraktory oraz komparatory. Każdy z tych bloków pełni określoną funkcję w obliczeniach.
 
 \subsection{Sumator}
-
-\begin{itemize}
-	\item Półsumator – dodaje dwa bity i generuje sumę oraz przeniesienie. Jest to podstawowy układ wykorzystywany w tworzeniu bardziej złożonych sumatorów \cite{maciak, digital, system, wiki-sum}.
-	\begin{table}[h!]
-		\centering
-		\begin{tabular}{|c c||c c|} 
-			\hline
-			\multicolumn{2}{|c||}{\textbf{Wejścia}} & \multicolumn{2}{c|}{\textbf{Wyjścia}} \\
-			\hline
-			\textbf{A} & \textbf{B} & \textbf{$C_{out}$} & \textbf{S} \\ [0.5ex] 
-			\hline\hline
-			0 & 0 & 0 & 0 \\ 
-			0 & 1 & 0 & 1 \\
-			1 & 0 & 0 & 1 \\
-			1 & 1 & 1 & 0 \\
-			\hline
-		\end{tabular}
-		\caption{Tabela prawdy półsumatora}
-		\label{tab:sumator}
-	\end{table}
-	\begin{figure}[h]
-		\centering
-		\includegraphics[width=0.5\textwidth]{half.PNG}
-		\caption{Schemat półsumatora}
-		\label{fig:moj_obrazek}
-	\end{figure}  
-	\pagebreak
-	
-	\item Sumator pełny – dodaje trzy bity (dwa bity z liczb oraz bit przeniesienia) i generuje sumę oraz przeniesienie, które może być przekazywane do kolejnego bitu.  
-	Działanie półsumatora i sumatora pełnego opiera się na zastosowaniu bramek logicznych takich jak AND, OR oraz XOR. Półsumator realizuje podstawową operację XOR do generowania sumy i AND do przeniesienia. Natomiast sumator pełny wymaga dwóch półsumatorów oraz dodatkowego przeniesienia z poprzedniego bitu\cite{maciak, digital, system, wiki-sum}.
-	\begin{table}[h!]
-		\centering
-		\begin{tabular}{|c c c||c c|} 
-			\hline
-			\multicolumn{3}{|c||}{\textbf{Wejścia}} & \multicolumn{2}{c|}{\textbf{Wyjścia}} \\
-			\hline
-			\textbf{A} & \textbf{B} & \textbf{$C_{in}$} & \textbf{$C_{out}$} & \textbf{S} \\ [0.5ex] 
-			\hline\hline
-			0 & 0 & 0 & 0 & 0 \\ 
-			0 & 0 & 1 & 0 & 1 \\
-			0 & 1 & 0 & 0 & 1 \\
-			0 & 1 & 1 & 1 & 0 \\
-			1 & 0 & 0 & 0 & 1 \\
-			1 & 0 & 1 & 1 & 0 \\
-			1 & 1 & 0 & 1 & 0 \\
-			1 & 1 & 1 & 1 & 1 \\
-			\hline
-		\end{tabular}
-		\caption{Tabela prawdy pełnego sumatora}
-		\label{tab:sumator}
-	\end{table}
-	\pagebreak
-	\begin{figure}[h]
-		\centering
-		\includegraphics[width=0.6\textwidth]{full.PNG}
-		\caption{Schemat pełnego sumatora}
-		\label{fig:moj_obrazek}
-	\end{figure}
-\end{itemize}
-
+• **Półsumator** – dodaje dwa bity i generuje sumę oraz przeniesienie. Jest to podstawowy układ wykorzystywany w tworzeniu bardziej złożonych sumatorów.  
+• **Sumator pełny** – dodaje trzy bity (dwa bity z liczb oraz bit przeniesienia) i generuje sumę oraz przeniesienie, które może być przekazywane do kolejnego bitu.  
+Działanie półsumatora i sumatora pełnego opiera się na zastosowaniu bramek logicznych takich jak AND, OR oraz XOR. Półsumator realizuje podstawową operację XOR do generowania sumy i AND do przeniesienia. Natomiast sumator pełny wymaga dwóch półsumatorów oraz dodatkowego przeniesienia z poprzedniego bitu.
 
 \subsection{Subtraktor}
-Subtraktor to układ odpowiedzialny za odejmowanie liczb binarnych. Można go zbudować na podstawie sumatora, wykorzystując zasadę dodawania w kodzie U2 (operacja dodawania ujemnej liczby). Subtraktor przyjmuje dwie liczby binarne jako dane wejściowe i generuje wynik ich różnicy na wyjściu, gdzie operacja odejmowania jest realizowana przez dodanie liczby pierwszej i dopełnienia liczby drugiej\cite{maciak, digital, wiki-sub}.
-\begin{table}[h!]
-	\centering
-	\begin{tabular}{|c c c||c c|} 
-		\hline
-		\multicolumn{3}{|c||}{\textbf{Wejścia}} & \multicolumn{2}{c|}{\textbf{Wyjścia}} \\
-		\hline
-		\textbf{A} & \textbf{B} & \textbf{$B_{in}$} & \textbf{D} & \textbf{$B_{out}$} \\ [0.5ex] 
-		\hline\hline
-		0 & 0 & 0 & 0 & 0 \\ 
-		0 & 0 & 1 & 1 & 1 \\
-		0 & 1 & 0 & 1 & 1 \\
-		0 & 1 & 1 & 0 & 1 \\
-		1 & 0 & 0 & 1 & 0 \\
-		1 & 0 & 1 & 0 & 0 \\
-		1 & 1 & 0 & 0 & 0 \\
-		1 & 1 & 1 & 1 & 1 \\
-		\hline
-	\end{tabular}
-	\caption{Tabela prawdy pełnego subtraktora}
-	\label{tab:sumator}
-\end{table}
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.65\textwidth]{sub.PNG}
-	\caption{Schemat subtraktora}
-	\label{fig:moj_obrazek}
-\end{figure}
+Subtraktor to układ odpowiedzialny za odejmowanie liczb binarnych. Można go zbudować na podstawie sumatora, wykorzystując zasadę dodawania w kodzie U2 (operacja dodawania ujemnej liczby). Subtraktor przyjmuje dwie liczby binarne jako dane wejściowe i generuje wynik ich różnicy na wyjściu, gdzie operacja odejmowania jest realizowana przez dodanie liczby pierwszej i dopełnienia liczby drugiej.
+
+\subsection{Komparator}
+Komparator to układ, którego zadaniem jest porównanie dwóch liczb binarnych. Na podstawie tego porównania, komparator zwraca wynik, który wskazuje, czy jedna liczba jest większa, mniejsza lub równa drugiej. Działa na zasadzie analizy poszczególnych bitów liczb, a następnie generuje odpowiedni sygnał, który wskazuje wynik porównania.
+
 \pagebreak
 
 \subsection{Komparator}
@@ -270,6 +190,7 @@ W trakcie laboratoriów dotyczących bloków arytmetyczno-logicznych w układach
 Zrealizowaliśmy pełny sumator, który w praktyce składał się z dwóch półsumatorów. Dzięki temu dokładnie zrozumieliśmy proces dodawania liczb binarnych oraz generowania przeniesienia. Zastosowanie tablicy prawdy dla pełnego sumatora umożliwiło sprawdzenie poprawności działania układu, potwierdzając, że sumator działa zgodnie z oczekiwaniami.
 Implementacja subtraktora, który realizuje operację odejmowania za pomocą kodu U2, pokazała, jak ważne jest poprawne zarządzanie liczbami ujemnymi w układach cyfrowych.
 Realizacja układu komparatora pozwoliła na porównywanie dwóch liczb binarnych, co jest istotną operacją w wielu układach cyfrowych. Korzystaliśmy również z układów scalonych takich jak 7483 (sumator/subtraktor) oraz 7485 (komparator). Dzięki temu mogliśmy lepiej zrozumieć ich działania.
+
 
 \section{Literatura}
 
